@@ -77,13 +77,6 @@ func (s *Searcher) Search(query string) []string {
 	regularExpression := fmt.Sprintf("(?i)%s", query)
 	reg := regexp.MustCompile(regularExpression)
 	is := s.SuffixArray.FindAllIndex(reg, -1)
-
-	//idxs := s.SuffixArray.Lookup([]byte(query), -1)
-	// results := []string{}
-	// for _, idx := range idxs {
-	// 	results = append(results, s.CompleteWorks[idx-250:idx+250])
-	// }
-	// return results
 	results := []string{}
 	for _, tuple := range is {
 		results = append(results, s.CompleteWorks[tuple[0]-250:tuple[0]+250])
